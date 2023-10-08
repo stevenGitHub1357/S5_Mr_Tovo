@@ -29,9 +29,9 @@ class RequeteInsert extends CI_Model
         return $this->db->query($rqt);
     }
 
-    public function insertInfoCandidat($idCandidat,$idSituation,$idDiplome,$idNationalite,$idDistrict,$salaireMin,$salaireMax){
-        $rqt = "INSERT INTO infoCandidat VALUES(DEFAULT,%d,%d,%d,%d,%d,%d,%d)";
-        $rqt = sprintf($rqt,$idCandidat,$idSituation,$idDiplome,$idNationalite,$idDistrict,$salaireMin,$salaireMax);
+    public function insertInfoCandidat($idCandidat,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$salaireMin,$salaireMax){
+        $rqt = "INSERT INTO infoCandidat VALUES(DEFAULT,%d,%d,%d,%d,%d,%d,%d,%d)";
+        $rqt = sprintf($rqt,$idCandidat,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$salaireMin,$salaireMax);
 
         return $this->db->query($rqt);
     }
@@ -43,9 +43,16 @@ class RequeteInsert extends CI_Model
         return $this->db->query($rqt);
     }
 
-    public function insertCandidat($nom,$prenom,$adress){
-        $rqt = "INSERT INTO candidat VALUES(DEFAULT,'%s','%s','%s')";
-        $rqt = sprintf($rqt,$nom,$prenom,$adress);
+    public function insertSpectBesoin($idBesoin,$idDistrict,$idDiplome,$idNationalite,$idGenre,$idSituation){
+        $rqt = "INSERT INTO spectbesoin VALUES(DEFAULT,%d,%d,%d,%d,%d,%d)";
+        $rqt = sprintf($rqt,$idBesoin,$idDistrict,$idDiplome,$idNationalite,$idGenre,$idSituation);
+
+        return $this->db->query($rqt);
+    }
+
+    public function insertCandidat($nom,$prenom,$adress,$email,$telephone,$naissance){
+        $rqt = "INSERT INTO candidat VALUES(DEFAULT,'%s','%s','%s','%s','%s','%s')";
+        $rqt = sprintf($rqt,$nom,$prenom,$adress,$email,$telephone,$naissance);
 
         return $this->db->query($rqt);
     }

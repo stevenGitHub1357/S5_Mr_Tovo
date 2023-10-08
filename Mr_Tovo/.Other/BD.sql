@@ -68,7 +68,8 @@ CREATE TABLE besoin(
     volumeH REAL,
     hommeJ REAL,
     salaire REAL,
-    descritpion VARCHAR(10000)  
+    descritpion VARCHAR(10000),
+    etat INTEGER REFERENCES etat(id)
 );
 
 CREATE TABLE spectBesoin(
@@ -86,6 +87,8 @@ CREATE TABLE candidat(
     nom VARCHAR(200),
     prenom VARCHAR(200),
     adress VARCHAR(200),
+    email VARCHAR(200),
+    tel VARCHAR(200),
     naissance TIMESTAMP
 );
 
@@ -96,6 +99,7 @@ CREATE TABLE infoCandidat(
     idDiplome INTEGER REFERENCES diplome(id),
     idNationalite INTEGER REFERENCES nationalite(id),
     idDistrict INTEGER REFERENCES  district(id),
+    idGenre INTEGER REFERENCES genre(id),
     salaireMin REAL,
     salaireMax REAL
 );
@@ -110,7 +114,7 @@ CREATE TABLE experience(
 
 CREATE TABLE question(
     id SERIAL PRIMARY KEY,
-    idBesion INTEGER REFERENCES besoin(id),
+    idBesoin INTEGER REFERENCES besoin(id),
     texte VARCHAR(1000),
     coefficient REAL
 );
