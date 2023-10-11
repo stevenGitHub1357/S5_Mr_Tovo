@@ -89,7 +89,7 @@
 		$data['Genre'] = $this->RequeteSelect->getAllGenre(0);
 		$data['Situation'] = $this->RequeteSelect->getAllSituation(0);
 
-		$this->load->view('ViewBack/BarMain');
+		// $this->load->view('ViewBack/BarMain');
 		$this->load->view('ViewBack/BesoinListe',$data);
 	}
 
@@ -118,7 +118,7 @@
 
 		$data['Candidat'] = $this->RequeteSelect->getAllCandidat(0);
 
-		$this->load->view('ViewBack/BarMain');
+		// $this->load->view('ViewBack/BarMain');
 		$this->load->view('ViewBack/CandidatListe',$data);
 	}
 
@@ -165,6 +165,207 @@
 	{
 		$this->load->view('ViewBack/QuestionInsert');
 	}
+
+	public function PersonnelListe()
+	{
+		$this->load->model('RequeteSelect');
+        
+        $data['Personnel'] = $this->RequeteSelect->getAllPersonnel(0);
+
+        $this->load->view('ViewBack/Personnel/PersonnelListe',$data);	
+	}
+
+	public function PersonnelInfo()
+	{
+		$this->load->model('RequeteSelect');
+
+		$id = $this->input->get('id');
+		$personnnel = $this->RequeteSelect->getAllInfoPersonnel($id);
+		$data['Personnel'] = $this->RequeteSelect->getAllPersonnel($id);
+		$data['District'] = $this->RequeteSelect->getAllDistrict($personnnel[0]['iddistrict']);
+		$data['Diplome'] = $this->RequeteSelect->getAllDiplome($personnnel[0]['iddiplome']);
+		$data['Nationalite'] = $this->RequeteSelect->getAllNationalite($personnnel[0]['idnationalite']);
+		$data['Genre'] = $this->RequeteSelect->getAllGenre($personnnel[0]['idgenre']);
+		$data['Situation'] = $this->RequeteSelect->getAllSituation($personnnel[0]['idsituation']);
+		$data['Poste'] = $this->RequeteSelect->getAllPoste($personnnel[0]['idposte']);
+		$data['Departement'] = $this->RequeteSelect->getAllDepartement($personnnel[0]['iddepartement']);
+		$data['Salaire'] = $this->RequeteSelect->getAllSalaire($id);
+
+		$this->load->view('ViewBack/Personnel/PersonnelInfo',$data);
+	}
+
+	public function PersonnelFormInsert()
+    {
+        $this->load->view('ViewBack/Personnel/PersonnelInsert');
+    }
+
+	public function PersonnelInsert()
+    {
+        $this->load->model('RequeteInsert');
+        $this->load->model('RequeteSelect');
+
+        $nom = $this->input->get('nom');
+        $prenom = $this->input->get('prenom');
+        $naissance = $this->input->get('naissance');
+        $email = $this->input->get('email');
+        $telephone = $this->input->get('telephone');
+        $adress = $this->input->get('adress');
+		$embauche = $this->input->get('embauche');
+
+        $this->RequeteInsert->insertPersonnel($nom,$prenom,$adress,$email,$telephone,$naissance,$embauche);
+
+        $idC= $this->RequeteSelect->getMaxId('personnel');
+
+		$this->session->set_userdata('personnel', $idC);
+
+        $data['District'] = $this->RequeteSelect->getAllDistrict(0);
+		$data['Diplome'] = $this->RequeteSelect->getAllDiplome(0);
+		$data['Nationalite'] = $this->RequeteSelect->getAllNationalite(0);
+		$data['Departement'] = $this->RequeteSelect->getAllDepartement(0);
+		$data['Poste'] = $this->RequeteSelect->getAllPoste(0);
+		$data['Genre'] = $this->RequeteSelect->getAllGenre(0);
+		$data['Situation'] = $this->RequeteSelect->getAllSituation(0);
+
+        $this->load->view('ViewBack/Personnel/PersonnelInfoInsert',$data);
+    }
+
+
+	public function PersonnelCvInsert()
+    {
+        $this->load->model('RequeteInsert');
+		$this->load->model('FrontFonction');
+
+        $idPersonnel = $_SESSION["personnel"];
+        $idDistrict = $this->input->get('district');
+		$idDiplome = $this->input->get('diplome');
+		$idNationalite = $this->input->get('nationalite');
+		$idGenre = $this->input->get('genre');
+		$idSituation = $this->input->get('situation');
+		$idPoste = $this->input->get('poste');
+		$idDepartement = $this->input->get('departement');
+        $nette = $this->input->get('salaireN');
+        $brute = $this->input->get('salaireB');
+		$base = $this->input->get('salaireBa');
+
+        $this->RequeteInsert->insertInfoPersonnel($idPersonnel,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$idPoste,$idDepartement);
+		$this->RequeteInsert->insertSalaire($idPersonnel,$base,$brute,$nette);
+
+		$this->PersonnelListe();
+
+    }
+
+	public function CongeeInsertForm()
+    {
+        $this->load->model('RequeteSelect');
+
+        $data['Personnel'] = $this->RequeteSelect->getAllPersonnel(0);
+		$data['Excuse'] = $this->RequeteSelect->getAllTypeCongee(0);
+
+        $this->load->view('ViewBack/Congee/CongeeInsert',$data);
+    }
+
+
+	public function CongeeInsert()
+    {
+        $this->load->model('RequeteInsert');
+		$idPersonnel = $this->input->get('personnel');
+        $debut = $this->input->get('debut');
+        $fin = $this->input->get('fin');
+		$excuse = $this->input->get('excuse');
+
+        $this->RequeteInsert->insertCongee($idPersonnel,$debut,$fin,$excuse);
+
+		$this->CongeeInsertForm();
+    }
+
+	public function CongeeListe()
+    {
+		$this->load->model('BackFonction');
+
+		$etat = $this->input->get('etat');
+
+		$data=$this->BackFonction->getCongeeListe($etat);
+
+		$this->load->view('ViewBack/Congee/CongeeListeBar');
+        $this->load->view('ViewBack/Congee/CongeeListe',$data);
+    }
+
+	public function CongeeAccepter()
+	{
+		$this->load->model('RequeteUpdate');
+
+		$id = $this->input->get('id');
+
+		$this->RequeteUpdate->CongeeAccepter($id);
+
+		$this->load->model('BackFonction');
+
+		$data=$this->BackFonction->getCongeeListe(2);
+
+		$this->load->view('ViewBack/Congee/CongeeListeBar');
+        $this->load->view('ViewBack/Congee/CongeeListe',$data);
+	}
+
+	public function CongeeRefuser()
+	{
+		$this->load->model('RequeteUpdate');
+
+		$id = $this->input->get('id');
+
+		$this->RequeteUpdate->CongeeRefuser($id);
+
+		$this->load->model('BackFonction');
+
+		$data=$this->BackFonction->getCongeeListe(3);
+
+		$this->load->view('ViewBack/Congee/CongeeListeBar');
+        $this->load->view('ViewBack/Congee/CongeeListe',$data);
+	}
+
+
+	public function AbsenceInsertForm()
+    {
+        $this->load->model('RequeteSelect');
+
+        $data['Personnel'] = $this->RequeteSelect->getAllPersonnel(0);
+
+        $this->load->view('ViewBack/Absence/AbsenceInsert',$data);
+    }
+
+	public function AbsenceInsert()
+    {
+        $this->load->model('RequeteInsert');
+		$idPersonnel = $this->input->get('personnel');
+        $debut = $this->input->get('debut');
+        $fin = $this->input->get('fin');
+		$excuse = $this->input->get('excuse');
+		$hdebut= $this->input->get('hdebut');
+		$hfin= $this->input->get('hfin');
+
+
+        $this->RequeteInsert->insertAbsence($idPersonnel,$debut,$fin,$hdebut,$hfin,$excuse);
+
+		$this->AbsenceInsertForm();
+    }
+
+	public function AbsenceListe()
+    {
+		$this->load->model('BackFonction');
+
+		$this->load->model('RequeteSelect');
+
+		$data['Personnel'] = $this->RequeteSelect->getAllPersonnel(0);
+		$data['Absence'] = $this->RequeteSelect->getAllAbsence(0);
+
+        $this->load->view('ViewBack/Absence/AbsenceListe',$data);
+    }
+
+
+
+
+
+
+
 
 
 
@@ -235,7 +436,7 @@
         $data['Experience'] = $this->RequeteSelect->getAllExperience($cd);
         $data['Situation'] = $this->RequeteSelect->getAllSituation($infoCandidat[0]['idsituation']);
         $data['Diplome'] = $this->RequeteSelect->getAllDiplome($infoCandidat[0]['idDiplome']);
-        $data['Nationalite'] = $this->RequeteSelect->getAllNationalite($infoCandidat[0]['idNationalite']);
+        $data['Poste'] = $this->RequeteSelect->getAllPoste($infoCandidat[0]['idNationalite']);
         $data['District'] = $this->RequeteSelect->getAllDistrict($infoCandidat[0]['idDistrict']);
         $data['SalaireMax'] = $this->RequeteSelect->getAllSalaireMax($infoCandidat[0]['SalaireMax']);
         $data['SalaireMin'] = $this->RequeteSelect->getAllSalaireMin($infoCandidat[0]['SalaireMin']);
@@ -244,6 +445,8 @@
         $this->load->view(' ',$data);
 
 	}
+
+	
 
 	
 

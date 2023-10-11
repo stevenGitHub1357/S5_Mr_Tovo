@@ -65,23 +65,44 @@
             color: #2980b9;
         }
     </style>
-    <title>Liste des Postulants</title>
+    <title>Liste du personnel</title>
 </head>
 <body>
 
     <div class="content">
-        <h1>Liste des Quèéstion</h1>
-        <h3><?php echo count($question)?></h3>
-            <?php for($i=0; $i<count($question); $i++){?>
-                <form action="<?php echo base_url('index.php/FrontController/QuestionModifier');?>">
-                    <h2><?php echo $question[$i][0]['texte']?></h2>
-                        <?php for($n=0; $n<count($question[$i][1]); $n++){?>
-                            <p>.     <?php echo $question[$i][1][$n]['texte'] ;?></p>
-                        <?php } ?> 
-                        <button type="submit">Modifier</button>
-                </form>    
+        <h1>Liste du personnel</h1>
+
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Rang</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Adress</th>
+                    <th>Date de naissance</th>
+                    <th>Date d' embauche</th>
+                    
+                </tr>
+            </thead>
+            <?php for($i=0; $i<count($Personnel); $i++){?>
+                <tbody>
+
+                    <tr>
+                        <td><?php echo $Personnel[$i]['id']?></td>
+                        <td><?php echo $Personnel[$i]['nom']?></td>
+                        <td><?php echo $Personnel[$i]['prenom']?></td>
+                        <td><?php echo $Personnel[$i]['adress']?></td>
+                        <td><?php echo $Personnel[$i]['naissance']?></td>
+                        <td><?php echo $Personnel[$i]['embauche']?></td>
+                        
+                        <td><a href="<?php echo base_url('index.php/BackController/PersonnelInfo');?>?id=<?php echo $Personnel[$i]['id']?>">Détails</a></td>
+                    </tr>
+                
+                </tbody>
             <?php } ?>
-        <a href="">Ajouter question</a>
+        </table>
+        
     </div>
 
 </body>

@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Annonces de Recrutement</title>
+    <title>Document</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -77,28 +78,10 @@
     </style>
 </head>
 <body>
-
-    <h1>Annonces de Recrutement</h1>
-    <div class="annonces-container">
-        <?php for($i=0; $i<count($Besoin); $i++){?>
-        <div class="annonce">
-            <h2>Departement: <?php echo $Departement[$Besoin[$i]['iddepartement']-1]['nom']?></h2>
-            <h2>Poste: <?php echo $Poste[$Besoin[$i]['idposte']-1]['nom']?></h2>
-            <p>Description du travail: <?php echo $Besoin[$i]['descritpion']?></p>
-            <p>Salaire proposer: <?php echo $Besoin[$i]['salaire']?></p>
-            <p>Nombre de place disponible: <?php echo $Besoin[$i]['volumeh']/$Besoin[$i]['hommej']?></p>
-            <p>Prérequis:
-                <ul>
-                    <li>Diplome: <?php echo $Diplome[$spectBesoin[$i]['iddiplome']-1]['nom']?></li>
-                    <li>District de residence: <?php echo $District[$spectBesoin[$i]['iddistrict']-1]['nom']?></li>
-                    
-                </ul>
-            </p>
-            <a href="<?php echo base_url('index.php/FrontController/CandidatFormInsert');?>?idBesoin=<?php echo $Besoin[$i]['id']?>" class="postuler-btn" >Postuler</a>
-            </div>
-        <?php } ?>
-    </div>
-
-
+    <h1>Bravo</h1>
+    <h2>Votre inscription est terminer</h2>
+    <h2>Nous vous contacteront dans quelque jours</h2>
+    <a href="<?php echo base_url('index.php/FrontController/CandidatInfo');?>" class="postuler-btn">Information me concernant</a>
+    <a href="<?php echo base_url('index.php/FrontController');?>" class="postuler-btn">Revenir a liste de recrutement</a>
 </body>
 </html>

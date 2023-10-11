@@ -22,16 +22,16 @@ class RequeteInsert extends CI_Model
         return $this->db->query($rqt);
     }
 
-    public function insertExperence($idCandidat,$lieu,$debut,$fin){
-        $rqt = "INSERT INTO experence VALUES(DEFAULT,%d,'%s','%s','%s')";
-        $rqt = sprintf($rqt,$idCandidat,$lieu,$debut,$fin);
+    public function insertExperence($idCandidat,$poste,$lieu,$debut,$fin){
+        $rqt = "INSERT INTO experience VALUES(DEFAULT,%d,%d,'%s','%s','%s')";
+        $rqt = sprintf($rqt,$idCandidat,$poste,$lieu,$debut,$fin);
 
         return $this->db->query($rqt);
     }
 
-    public function insertInfoCandidat($idCandidat,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$salaireMin,$salaireMax){
-        $rqt = "INSERT INTO infoCandidat VALUES(DEFAULT,%d,%d,%d,%d,%d,%d,%d,%d)";
-        $rqt = sprintf($rqt,$idCandidat,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$salaireMin,$salaireMax);
+    public function insertInfoCandidat($idBesoin,$idCandidat,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$salaireMin,$salaireMax){
+        $rqt = "INSERT INTO infoCandidat VALUES(DEFAULT,%d,%d,%d,%d,%d,%d,%d,%d,%d)";
+        $rqt = sprintf($rqt,$idBesoin,$idCandidat,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$salaireMin,$salaireMax);
 
         return $this->db->query($rqt);
     }
@@ -57,5 +57,39 @@ class RequeteInsert extends CI_Model
         return $this->db->query($rqt);
     }
 
+    public function insertPersonnel($nom,$prenom,$adress,$email,$telephone,$naissance,$embauche){
+        $rqt = "INSERT INTO personnel VALUES(DEFAULT,'%s','%s','%s','%s','%s','%s','%s',1)";
+        $rqt = sprintf($rqt,$nom,$prenom,$adress,$email,$telephone,$naissance,$embauche);
+
+        return $this->db->query($rqt);
+    }
+
+    public function insertInfoPersonnel($idPersonnel,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$idPoste,$idDepartement){
+        $rqt = "INSERT INTO infoPersonnel VALUES(DEFAULT,%d,%d,%d,%d,%d,%d,%d,%d)";
+        $rqt = sprintf($rqt,$idPersonnel,$idSituation,$idDiplome,$idNationalite,$idDistrict,$idGenre,$idPoste,$idDepartement);
+
+        return $this->db->query($rqt);
+    }
+
+    public function insertSalaire($personnel,$base,$brute,$nette){
+        $rqt = "INSERT INTO salaire VALUES(DEFAULT,%d,%d,%d,%d)";
+        $rqt = sprintf($rqt,$personnel,$base,$brute,$nette);
+
+        return $this->db->query($rqt);
+    }
+
+    public function insertAbsence($idPersonnel,$debut,$fin,$hdebut,$hfin,$excuse){
+        $rqt = "INSERT INTO absence VALUES(DEFAULT,%d,'%s','%s','%s','%s','%s')";
+        $rqt = sprintf($rqt,$idPersonnel,$debut,$fin,$hdebut,$hfin,$excuse);
+
+        return $this->db->query($rqt);
+    }
+
+    public function insertCongee($idPersonnel,$debut,$fin,$excuse){
+        $rqt = "INSERT INTO congee VALUES(DEFAULT,%d,'%s','%s',%d)";
+        $rqt = sprintf($rqt,$idPersonnel,$debut,$fin,$excuse);
+
+        return $this->db->query($rqt);
+    }
     
 }

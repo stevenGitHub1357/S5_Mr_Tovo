@@ -65,23 +65,41 @@
             color: #2980b9;
         }
     </style>
-    <title>Liste des Postulants</title>
+    <title>Liste du personnel</title>
 </head>
 <body>
 
     <div class="content">
-        <h1>Liste des Quèéstion</h1>
-        <h3><?php echo count($question)?></h3>
-            <?php for($i=0; $i<count($question); $i++){?>
-                <form action="<?php echo base_url('index.php/FrontController/QuestionModifier');?>">
-                    <h2><?php echo $question[$i][0]['texte']?></h2>
-                        <?php for($n=0; $n<count($question[$i][1]); $n++){?>
-                            <p>.     <?php echo $question[$i][1][$n]['texte'] ;?></p>
-                        <?php } ?> 
-                        <button type="submit">Modifier</button>
-                </form>    
+        <h1>Liste des absence</h1>
+
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom & Prenom</th>
+                    <th>Prénom</th>
+                    <th>Debut</th>
+                    <th>Fin</th>
+                    <th>Excuse</th>
+                    
+                </tr>
+            </thead>
+            <?php for($i=0; $i<count($Absence); $i++){?>
+                <tbody>
+
+                    <tr>
+                        <td><?php echo $Personnel[$Absence[$i]['idpersonnel']-1]['nom']?></td>
+                        <td><?php echo $Personnel[$Absence[$i]['idpersonnel']-1]['prenom']?></td>
+                        <td><?php echo $Absence[$i]['debut']?></td>
+                        <td><?php echo $Absence[$i]['fin']?></td>
+                        <td><?php echo $Absence[$i]['excuse']?></td>
+                        
+                    </tr>
+                
+                </tbody>
             <?php } ?>
-        <a href="">Ajouter question</a>
+        </table>
+        
     </div>
 
 </body>

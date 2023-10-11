@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire CV</title>
+    <title>Formulaire personnel</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,9 +91,9 @@
     </style>
 </head>
 <body>
-<form action="<?php echo base_url('index.php/FrontController/CandidatInsert');?>">
+<form action="<?php echo base_url('index.php/BackController/PersonnelInsert');?>">
     <div id="cvContainer" class="form-container">
-            <h2>Information sur le candidat</h2>
+            <h2>Information sur le nouveau personnel</h2>
             
             <div class="left-column">
                 
@@ -105,6 +105,9 @@
 
                     <label for="email">Email :</label>
                     <input type="email" id="email" name="email" required>
+
+                    <label for="adresse">Date d'embauche :</label>
+                    <input type="date" id="adresse" name="embauche" required>
             </div>
 
             <div class="right-column">
@@ -118,7 +121,6 @@
                     <input type="text" id="adresse" name="adress" required>
                 
             </div>
-            <input type="hidden" id="adresse" name="idBesoin" value="<?php echo $idBesoin?>">
             <button type="submit" id="btnValidate" >Valider</button>
     </div>
 </form>

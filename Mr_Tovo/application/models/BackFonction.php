@@ -20,4 +20,16 @@ class BackFonction extends CI_Model
         return $data;
     }
 
+	public function getCongeeListe($etat)
+    {
+        $this->load->model('RequeteSelect');
+
+        $data['Personnel'] = $this->RequeteSelect->getAllPersonnel(0);
+		$data['Congee'] = $this->RequeteSelect->getAllCongee($etat);
+		$data['Etat'] = $this->RequeteSelect->getAllEtatCongee($etat);
+		$data['Excuse'] = $this->RequeteSelect->getAllTypeCongee(0);
+
+		return $data;
+    }
+
 }

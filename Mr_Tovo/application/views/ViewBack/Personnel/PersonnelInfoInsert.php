@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire CV</title>
+    <title>Formulaire personnel</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -92,9 +92,9 @@
 </head>
 <body>
 
-<form action="<?php echo base_url('index.php/FrontController/CandidatCvInsert');?>">
+<form action="<?php echo base_url('index.php/BackController/PersonnelCvInsert');?>">
     <div id="cvContainer" class="form-container">
-        <h2>CV du candidat</h2>
+        <h2>Autre information sur le nouveau personnel</h2>
         
         <div class="left-column">
             
@@ -142,26 +142,38 @@
         <h2>Suite</h2>
         <div class="left-column">
             
-                <label for="diplome">Diplôme :</label>
-                <select id="diplome" name="diplome" required>
-                    <?php  for($i=0; $i<count($Diplome); $i++){?>
-                        <option value="<?php echo $Diplome[$i]['id']?>"><?php echo $Diplome[$i]['nom']?></option>
+                <label for="diplome">Poste :</label>
+                <select id="diplome" name="poste" required>
+                    <?php  for($i=0; $i<count($Poste); $i++){?>
+                        <option value="<?php echo $Poste[$i]['id']?>"><?php echo $Poste[$i]['nom']?></option>
                     <?php } ?>
                 </select>
 
-                <label for="estimationSalariale">Saliare maximum :</label>
-                <input type="number" id="estimationSalariale" name="salaireMin" required>
+                <label for="estimationSalariale">Saliare nette :</label>
+                <input type="number" id="estimationSalariale" name="salaireN" required>
+
+                <label for="estimationSalariale">Salaire brute :</label>
+                <input type="number" id="estimationSalariale" name="salaireB" required>
 
             
             <button type="button" id="btnPrevious" onclick="afficherPremierFormulaire()">Précédent</button>
         </div>
 
         <div class="right-column">
-            <label for="pdfDiplome" class="pdf-upload">PDF Diplôme :</label>
-            <input type="file" id="pdfDiplome" name="pdfDiplome" accept=".pdf">
+        <label for="diplome">Departement :</label>
+            <select id="diplome" name="departement" required>
+                <?php  for($i=0; $i<count($Departement); $i++){?>
+                    <option value="<?php echo $Departement[$i]['id']?>"><?php echo $Departement[$i]['nom']?></option>
+                <?php } ?>
+            </select><label for="diplome">Diplôme :</label>
+            <select id="diplome" name="diplome" required>
+                <?php  for($i=0; $i<count($Diplome); $i++){?>
+                    <option value="<?php echo $Diplome[$i]['id']?>"><?php echo $Diplome[$i]['nom']?></option>
+                <?php } ?>
+            </select>
 
-            <label for="estimationSalariale">Salaire minimum :</label>
-            <input type="number" id="estimationSalariale" name="salaireMax" required>
+            <label for="estimationSalariale">Salaire base :</label>
+            <input type="number" id="estimationSalariale" name="salaireBa" required>
 
             <button type="submit" id="btnValidate" >Valider</button>
         </div>
@@ -179,10 +191,6 @@
         function afficherPremierFormulaire() {
             document.getElementById('cvContainer').style.display = 'grid';
             document.getElementById('secondFormContainer').style.display = 'none';
-        }
-
-        function validerFormulaire() {
-            // Ajoutez ici le code pour l'action du bouton valider
         }
     </script>
 

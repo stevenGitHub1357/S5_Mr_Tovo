@@ -208,5 +208,123 @@ class RequeteSelect extends CI_Model
         return $tableFin;
     }
 
+    public function getAllEntreprise($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM entreprise"; 
+        }else{
+            $request="SELECT * FROM  entreprise  WHERE id=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+    public function getAllPersonnel($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM personnel"; 
+        }else{
+            $request="SELECT * FROM  personnel  WHERE id=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+    public function getAllPersonnelByEtat($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM personnel"; 
+        }else{
+            $request="SELECT * FROM  personnel  WHERE etat=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+    public function getAllInfoPersonnel($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM infoPersonnel"; 
+        }else{
+            $request="SELECT * FROM  infoPersonnel  WHERE idPersonnel=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+    public function getAllSalaire($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM salaire"; 
+        }else{
+            $request="SELECT * FROM  salaire  WHERE idpersonnel=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+    public function getAllAbsence($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM absence"; 
+        }else{
+            $request="SELECT * FROM  absence  WHERE id=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+    public function getAllCongee($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM congee"; 
+        }else{
+            $request="SELECT * FROM  congee  WHERE etat=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+    public function getAllTypeCongee($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM typeCongee"; 
+        }else{
+            $request="SELECT * FROM  typeCongee  WHERE id=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+    public function getAllEtatCongee($id)
+    {
+        if($id==0){
+            $request="SELECT * FROM etatcongee"; 
+        }else{
+            $request="SELECT * FROM  etatcongee  WHERE id=".$id;
+        }
+        
+        $table = $this->db->query($request);
+        $tableFin = $table->result_array();
+        return $tableFin;
+    }
+
+
 
 }

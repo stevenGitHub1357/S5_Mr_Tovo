@@ -13,5 +13,17 @@ class RequeteUpdate extends CI_Model
         return $this->db->query($rqt);
     }
 
+    public function congeeAccepter($id){
+        $rqt = "UPDATE congee set etat=2 where id=%d ";
+        $rqt = sprintf($rqt,$id);
+        return $this->db->query($rqt);
+    }
+
+    public function congeeRefuser($id){
+        $rqt = "UPDATE congee set etat=3 where id=%d ";
+        $rqt = sprintf($rqt,$id);
+        return $this->db->query($rqt);
+    }
+
     
 }

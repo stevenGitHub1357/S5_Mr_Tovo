@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire CV</title>
+    <title>Formulaire personnel</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,34 +91,38 @@
     </style>
 </head>
 <body>
-<form action="<?php echo base_url('index.php/FrontController/CandidatInsert');?>">
+<form action="<?php echo base_url('index.php/BackController/AbsenceInsert');?>">
     <div id="cvContainer" class="form-container">
-            <h2>Information sur le candidat</h2>
+            <h2>Inserer un congée</h2>
             
             <div class="left-column">
                 
-                    <label for="nom">Nom :</label>
-                    <input type="text" id="nom" name="nom" required>
+                    <label for="nom">Nom et prenom:</label>
+                    <select id="genre" name="personnel" required>
+                        <?php  for($i=0; $i<count($Personnel); $i++){?>
+                            <option value="<?php echo $Personnel[$i]['id']?>"><?php echo $Personnel[$i]['nom'].'  '.$Personnel[$i]['prenom']?></option>
+                        <?php } ?>
+                    </select>
 
-                    <label for="prenom">Prénom :</label>
-                    <input type="text" id="prenom" name="prenom" required>
+                    <label for="adresse">Heure de debut :</label>
+                    <input type="time" id="adresse" name="hdebut" required>
 
-                    <label for="email">Email :</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="adresse">Date de debut :</label>
+                    <input type="date" id="adresse" name="debut" required>
             </div>
 
             <div class="right-column">
-                    <label for="email">Telephone :</label>
-                    <input type="Telephone" id="Telephone" name="telephone" required>
+                
+                    <label for="adresse">Excuse :</label>
+                    <input type="texte" id="adresse" name="excuse" required>
 
-                    <label for="dateNaissance">Date de naissance :</label>
-                    <input type="date" id="dateNaissance" name="naissance" required>
+                    <label for="adresse">Heure de fin :</label>
+                    <input type="time" id="adresse" name="hfin" required>
 
-                    <label for="adresse">Adresse :</label>
-                    <input type="text" id="adresse" name="adress" required>
+                    <label for="adresse">Date de fin :</label>
+                    <input type="date" id="adresse" name="fin" required>
                 
             </div>
-            <input type="hidden" id="adresse" name="idBesoin" value="<?php echo $idBesoin?>">
             <button type="submit" id="btnValidate" >Valider</button>
     </div>
 </form>
