@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CandidatExperience</title>
+    <link rel="stylesheet" href="./bulma/css/bulma.min.css">
+    <style>
+        body {
+          background-color: #f5f5f5;
+        }
+        .custom-section {
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+        .form-container {
+          margin-bottom: 20px;
+        }
+        .form-btn-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 10px;
+        }
+        .table-container {
+          margin-top: 20px;
+        }
+      </style>
+</head>
+<body>
+
+        <!-- Titre -->
+    <section class="section custom-section">
+        <div class="container">
+        <h1 class="title has-text-centered">Expérience du Candidat</h1>
+        </div>
+    </section>
+
+    <!-- Formulaire -->
+    <section class="section custom-section form-container">
+        <div class="container">
+        <form id="experience-form">
+            <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field">
+                <label class="label">Entreprise</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Nom de l'entreprise" name="entreprise" required>
+                </div>
+                </div>
+
+                <div class="field">
+                <label class="label">Poste Occupé</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Poste occupé" name="poste" required>
+                </div>
+                </div>
+
+                <div class="field">
+                <label class="label">Date de Début</label>
+                <div class="control">
+                    <input class="input" type="date" name="dateDebut" required>
+                </div>
+                </div>
+
+                <div class="field">
+                <label class="label">Date de Fin</label>
+                <div class="control">
+                    <input class="input" type="date" name="dateFin">
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="form-btn-container">
+            <div class="control">
+                <button type="button" class="button is-primary" onclick="ajouterExperience()">Ajouter</button>
+            </div>
+            </div>
+        </form>
+        </div>
+    </section>
+
+    <!-- Tableau -->
+    <section class="section custom-section table-container">
+        <div class="container">
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>Entreprise</th>
+                <th>Poste Occupé</th>
+                <th>Date de Début</th>
+                <th>Date de Fin</th>
+            </tr>
+            </thead>
+            <tbody id="experience-table-body">
+            <!-- Données de test -->
+            <tr>
+                <td>Entreprise A</td>
+                <td>Poste A</td>
+                <td>2022-01-01</td>
+                <td>2022-12-31</td>
+            </tr>
+            <tr>
+                <td>Entreprise B</td>
+                <td>Poste B</td>
+                <td>2021-06-15</td>
+                <td>2022-03-20</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <script>
+    function ajouterExperience() {
+        // Récupérer les valeurs du formulaire
+        var entreprise = document.forms["experience-form"]["entreprise"].value;
+        var poste = document.forms["experience-form"]["poste"].value;
+        var dateDebut = document.forms["experience-form"]["dateDebut"].value;
+        var dateFin = document.forms["experience-form"]["dateFin"].value;
+
+        // Créer une nouvelle ligne dans le tableau
+        var tableBody = document.getElementById("experience-table-body");
+        var newRow = tableBody.insertRow(tableBody.rows.length);
+
+        // Ajouter les cellules avec les valeurs du formulaire
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        var cell3 = newRow.insertCell(2);
+        var cell4 = newRow.insertCell(3);
+
+        cell1.innerHTML = entreprise;
+        cell2.innerHTML = poste;
+        cell3.innerHTML = dateDebut;
+        cell4.innerHTML = dateFin;
+
+        // Réinitialiser le formulaire
+        document.getElementById("experience-form").reset();
+    }
+    </script>
+
+</body>
+</html>
