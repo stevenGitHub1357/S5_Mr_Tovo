@@ -1,6 +1,6 @@
 -- Pour la table "candidat"
 INSERT INTO candidat (nom, prenom, adress, email, tel, naissance) VALUES ('Dupont', 'Jean', '123 Rue de la Poste', 'Jean@gmail.com', '+2210000152', now());
-INSERT INTO candidat (nom, prenom, adress, email, tel, naissance) VALUES ('Martin', 'Marie', '456 Avenue des Fleurs', 'marie@gmail.com' ,now());
+INSERT INTO candidat (nom, prenom, adress, email, tel, naissance) VALUES ('Martin', 'Marie', '456 Avenue des Fleurs', 'marie@gmail.com', '+2210000152' ,now());
 INSERT INTO candidat (nom, prenom, adress, email, tel, naissance) VALUES ('Leclerc', 'Pierre', '789 Boulevard du Soleil', 'pierre@gmail.com', '+2210000152', now());
 INSERT INTO candidat (nom, prenom, adress, email, tel, naissance) VALUES ('Dufresne', 'Sophie', '1010 Rue de la Mer', 'Sophie@gmail.com', '+2210000152', now());
 INSERT INTO candidat (nom, prenom, adress, email, tel, naissance) VALUES ('Girard', 'Luc', '2222 Avenue de la Lune', 'Luc@gmail.com', '+2210000152', now());
@@ -30,19 +30,19 @@ VALUES (2, 5, 5, 2, 5, 1, 1, 32000.0, 48000.0);
 
 -- Pour la table "experience"
 INSERT INTO experience (idCandidat, idPost, idEntreprise, debut, fin)
-VALUES (1, 1, '2022-01-15 09:00:00', '2022-12-31 17:30:00');
+VALUES (1, 1, 1, '2022-01-15 09:00:00', '2022-12-31 17:30:00');
 
 INSERT INTO experience (idCandidat, idPost, idEntreprise, debut, fin)
-VALUES (2, 2, '2021-03-10 08:45:00', '2022-11-30 16:15:00');
+VALUES (2, 2, 1, '2021-03-10 08:45:00', '2022-11-30 16:15:00');
 
 INSERT INTO experience (idCandidat, idPost, idEntreprise, debut, fin)
-VALUES (3, 3, '2020-06-22 10:30:00', '2021-09-15 18:00:00');
+VALUES (3, 3, 1, '2020-06-22 10:30:00', '2021-09-15 18:00:00');
 
 INSERT INTO experience (idCandidat, idPost, idEntreprise, debut, fin)
-VALUES (4, 4, '2019-12-01 08:00:00', '2020-07-25 16:45:00');
+VALUES (4, 4, 1, '2019-12-01 08:00:00', '2020-07-25 16:45:00');
 
 INSERT INTO experience (idCandidat, idPost, idEntreprise, debut, fin)
-VALUES (4, 5, '2021-02-18 09:30:00', '2021-10-10 17:00:00');
+VALUES (4, 5, 1, '2021-02-18 09:30:00', '2021-10-10 17:00:00');
 
 
 

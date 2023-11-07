@@ -18,7 +18,8 @@ DROP TABLE candidat;
 
 
 DROP TABLE personnel;
-DROP TABLE etatPersonnel
+DROP TABLE etatPersonnel;
+DROP TABLE infoPersonnel;
 DROP TABLE poste;
 DROP TABLE district;
 DROP TABLE diplome;
@@ -114,7 +115,7 @@ CREATE TABLE infoCandidat(
     salaireMax REAL
 );
 
-CREATE TABLE Entreprise(
+CREATE TABLE entreprise(
     id SERIAL PRIMARY KEY,
     nom VARCHAR(1000),
     email VARCHAR(1000),
@@ -155,7 +156,7 @@ CREATE TABLE reponseC(
     note REAL
 );
 
-CREATE TABLE etatCongee(
+CREATE TABLE etatPersonnel(
     id SERIAL PRIMARY KEY,
     nom VARCHAR(200) 
 );
